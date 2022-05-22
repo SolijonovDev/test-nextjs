@@ -3,13 +3,16 @@ import { Layout } from './../components/Layout';
 import { withRouter } from 'next/router'
 
 const Blog=(props)=>{
-    console.log("blog",props)
     return <Layout title={"Blog page"}>
       <ul>
           {
               props.data.map(v=>(
                   <li key={v.id}>
-                      <span>{v.id}</span> : <span>{v.title}</span>
+                    <Link href={`/blog/${v.id}`}>
+                    <a>
+                    <span>{v.id}</span> : <span>{v.title}</span>
+                    </a>
+                    </Link>
                   </li>
               ))
           }
@@ -31,7 +34,5 @@ export async function getServerSideProps() {
     };
   }
   
-  
-
 
 export default withRouter(Blog);
