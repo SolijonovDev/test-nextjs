@@ -35,6 +35,7 @@ const Users = (props) => {
 
 export async function getServerSideProps(context) {
   console.log("users context: ", context);
+  const page=context.query.page || 1;
   const res = await fetch(
     `https://api.itv.uz/api/content/main/2/list?page=${1}&user=a71651276800s055120e1a6ffaa1ec27`
   );
