@@ -1,33 +1,45 @@
 import Link from "next/link";
 import { Layout } from "./../components/Layout";
+import  Image  from 'next/image';
 
 const Users = (props) => {
-    console.log("json users: ",props.posts)
   return (
     <Layout title={"users"}>
       <h1>Users</h1>
-      <ul>
-          {props.posts.map(v=>(
-              <li key={v.id}>
+      <div>
+          {props.movies.movies.map(v=>(
+              <div key={v.id}>
+                  <Image
+                      loader={() => v.files.poster_url}
+                      src={v.files.poster_url}
+                      width={500}
+                      height={200}
+                    //   layout="fill"
+                      alt="photo"
+                    />
                 <Link href={`/user/${v.id}`}>
-                   <a><span>{v.id}</span> <span>{v.name}</span>  <span>{v.username}</span></a>
+                
+                   <a><span>{v.id}</span> <span>{v.title}</span>  <span>{v.year}</span></a>
                 </Link>
-              </li>
+              </div>
           ))}
-      </ul>
+      </div>
     </Layout>
   );
 };
 
 
 
-export async function getStaticProps() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
-    const posts = await res.json()
+export async function getServerSideProps(context) {
+    console.log("users context: ",context)
+    const res = await fetch(
+        `https://api.itv.uz/api/content/main/2/list?page=${1}&user=a71651276800s055120e1a6ffaa1ec27`
+      );
+      const json = await res.json();
   
     return {
       props: {
-        posts,
+        movies:json.data,
       },
     }
   }
