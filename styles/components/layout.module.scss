@@ -1,0 +1,30 @@
+.layout{
+    width: 100%;
+    min-height: 100vh;
+    nav{
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        padding: 20px 0;
+        background-color: darkolivegreen;
+        a{
+            color:#fff;
+            font-size: 20px;
+            text-decoration: none;
+        }
+    }
+    main{
+        margin-top: 40px;
+        max-width: 1400px;
+        padding: 0 15px;
+        margin: 0 auto;
+    }
+    footer{
+        width: 100%;
+        p{
+            text-align: center;
+            font-size: 16px;
+            color:#000;
+        }
+    }
+}
